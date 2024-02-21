@@ -18,32 +18,28 @@ namespace Minesweeper
 
         public Mine(Size imgSize, int x, int y, Mark mark) : base(imgSize, x, y, true, mark)
         {
-            SetDefaultValues();
-        }
-
-        private void SetDefaultValues()
-        {
-            StageBoom = -1;
-            DetonationTime = -1;
-            Visible = false;
+            Reset();
         }
 
         public override void Reset()
         {
             base.Reset();
-            SetDefaultValues();
+
+            StageBoom = -1;
+            DetonationTime = -1;
+            Visible = false;
         }
 
         public void SetUpBoom(int detonationTime) => DetonationTime = detonationTime;
 
         public void ReduceTime(int deltaTime) => DetonationTime -= deltaTime;
 
-        public async void Boom(int frame)
+        public async void Boom(int delay)
         {
             while (StageBoom < CountStagesBoom)
             {
                 StageBoom++;
-                await Task.Delay(frame);
+                await Task.Delay(delay);
             }
         }
 

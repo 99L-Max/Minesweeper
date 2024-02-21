@@ -17,15 +17,15 @@ namespace Minesweeper
         private const int Frame = 50;
 
         private readonly Size sizeCell;
-        private readonly Bitmap openCell;
+        private readonly Bitmap emptyImage;
         private readonly Focus focus;
+        private readonly Dictionary<(int, int), Cell> cells;
 
         private bool isFinishAnimation;
         private bool isWin;
         private int countOpenCells;
         private Bitmap imgMap;
         private Bitmap imgMine;
-        private Dictionary<(int, int), Cell> cells;
         private Dictionary<Mark, Bitmap> imgCells;
         private Graphics g;
         private Mine[] mines;
@@ -51,10 +51,12 @@ namespace Minesweeper
             SizeMode = PictureBoxSizeMode.Zoom;
             BackgroundImageLayout = ImageLayout.Zoom;
             Dock = DockStyle.Fill;
+            Font = new Font("", 32, FontStyle.Bold);
 
             sizeCell = new Size(50, 50);
-            openCell = new Bitmap(sizeCell.Width, sizeCell.Height);
+            emptyImage = new Bitmap(sizeCell.Width, sizeCell.Height);
             focus = new Focus();
+            cells = new Dictionary<(int, int), Cell>();
 
             focus.MouseDoubleClick += OnCellMouseDoubleClick;
             focus.MouseUp += OnCellMouseUp;
@@ -87,19 +89,14 @@ namespace Minesweeper
 
             if (!isSaved && Parameters.IsShowAnimation)
             {
-                Bitmap background = new Bitmap(imgMap.Width, imgMap.Height);
-
                 using (Bitmap openCell = new Bitmap(Resources.OpenCell, sizeCell))
-                using (Graphics g = Graphics.FromImage(background))
-                {
                     foreach (var c in cells.Values)
                         g.DrawImage(openCell, c.Rectangle);
 
-                    SetBackground(background);
-                }
+                Image = imgMap;
 
-                Random random = new Random();
-                Stack<Cell> stack = new Stack<Cell>(cells.Values.OrderBy(c => random.Next()));
+                Random rnd = new Random();
+                Stack<Cell> stack = new Stack<Cell>(cells.Values.OrderBy(c => rnd.Next()));
 
                 Sound.Play(Resources.Start);
 
@@ -119,9 +116,7 @@ namespace Minesweeper
             }
             else
             {
-                foreach (var cell in cells.Values)
-                    if (cell.IsClose)
-                        g.DrawImage(imgCells[cell.Mark], cell.Rectangle);
+                cells.Values.Where(c => c.IsClose).ToList().ForEach(c => g.DrawImage(imgCells[c.Mark], c.Rectangle));
             }
 
             Image = imgMap;
@@ -139,7 +134,14 @@ namespace Minesweeper
         {
             Level = Parameters.Level;
 
-            cells = new Dictionary<(int, int), Cell>();
+            if (cells.Count > 0)
+            {
+                foreach (var cell in cells.Values)
+                    cell.CellOpen -= CellOpen;
+
+                cells.Clear();
+            }
+
             SizeInCells = new Size(Parameters.MapSize.Width, Parameters.MapSize.Height);
 
             for (int x = 0; x < SizeInCells.Width; x++)
@@ -210,7 +212,6 @@ namespace Minesweeper
             using (Graphics g = Graphics.FromImage(background))
             using (Bitmap openCell = new Bitmap(Resources.OpenCell, sizeCell))
             using (Bitmap mine = new Bitmap(Resources.Mine_Exploded, sizeCell))
-            using (Font font = new Font("", 32, FontStyle.Bold))
             using (StringFormat format = new StringFormat())
             {
                 format.Alignment = StringAlignment.Center;
@@ -221,9 +222,8 @@ namespace Minesweeper
                     g.DrawImage(openCell, cell.Rectangle);
 
                     if (cell.CountMinesNearby > 0)
-                        g.DrawString($"{cell.CountMinesNearby}", font, brushes[cell.CountMinesNearby - 1], cell.Rectangle, format);
-
-                    if (cell is Mine)
+                        g.DrawString($"{cell.CountMinesNearby}", Font, brushes[cell.CountMinesNearby - 1], cell.Rectangle, format);
+                    else if (cell is Mine)
                         g.DrawImage(mine, cell.Rectangle);
                 }
 
@@ -238,7 +238,7 @@ namespace Minesweeper
             focus.MouseClick -= SetMines;
             focus.MouseClick -= OnCellMouseClick;
 
-            Controls.Remove(focus);
+            Controls.Clear();
         }
 
         private void CellOpen(Cell sender)
@@ -252,7 +252,7 @@ namespace Minesweeper
             }
             else
             {
-                g.DrawImage(openCell, sender.Rectangle);
+                g.DrawImage(emptyImage, sender.Rectangle);
                 Image = imgMap;
 
                 if (++countOpenCells == cells.Count - mines.Length)
@@ -281,6 +281,7 @@ namespace Minesweeper
                     CounterChanged.Invoke(cell.Mark != Mark.Empty);
 
                 cell.ChangeMark();
+
                 g.DrawImage(imgCells[cell.Mark], cell.Rectangle);
                 Image = imgMap;
             }
@@ -313,7 +314,7 @@ namespace Minesweeper
                         using (Bitmap cross = new Bitmap(Resources.Cross, sizeCell))
                             for (int i = 0; i < 6; i++)
                             {
-                                g.DrawImage((i & 1) == 0 ? cross : openCell, cell.Rectangle);
+                                g.DrawImage((i & 1) == 0 ? cross : emptyImage, cell.Rectangle);
                                 Image = imgMap;
                                 await Task.Delay(100);
                             }
@@ -336,10 +337,12 @@ namespace Minesweeper
 
                 Random rnd = new Random();
                 List<Cell> listMines = cells.Values.Where(m => m.X < x1 || m.X > x2 || m.Y < y1 || m.Y > y2).OrderBy(m => rnd.Next()).Take(mines.Length).ToList();
+                Cell mine;
 
                 for (int i = 0; i < mines.Length; i++)
                 {
-                    Cell mine = listMines[i];
+                    mine = listMines[i];
+                    mine.CellOpen -= CellOpen;
                     cells[(mine.X, mine.Y)] = mines[i] = new Mine(sizeCell, mine.X, mine.Y, mine.Mark);
                     mines[i].CellOpen += CellOpen;
                 }
@@ -386,7 +389,7 @@ namespace Minesweeper
                     g.DrawImage(mine.Mark == Mark.Flag ? imgCells[Mark.Flag] : imgMine, mine.Rectangle);
             else
                 foreach (var mine in mines)
-                    g.DrawImage(openCell, mine.Rectangle);
+                    g.DrawImage(emptyImage, mine.Rectangle);
 
             Image = imgMap;
         }
@@ -411,12 +414,12 @@ namespace Minesweeper
             }
 
             if (Parameters.IsShowAnimation)
-                await (isWin ? ShowVictory() : ShowLoss(sender));
+                await (isWin ? Victory() : Loss(sender));
             else
                 DrawMines(isWin);
         }
 
-        private async Task ShowVictory()
+        private async Task Victory()
         {
             isFinishAnimation = false;
 
@@ -484,7 +487,7 @@ namespace Minesweeper
             }
         }
 
-        private async Task ShowLoss(Cell sender)
+        private async Task Loss(Cell sender)
         {
             isFinishAnimation = false;
 
@@ -510,6 +513,7 @@ namespace Minesweeper
             Stack<Mine> stack = new Stack<Mine>(mines.OrderByDescending(m => m.DetonationTime));
             Queue<Mine> queue = new Queue<Mine>();
             bool isPlaySound;
+            int delayBoom = 4 * Frame;
 
             do
             {
@@ -520,7 +524,7 @@ namespace Minesweeper
 
                 while (stack.Count > 0 && stack.Peek().DetonationTime <= 0)
                 {
-                    stack.Peek().Boom(Frame << 2);
+                    stack.Peek().Boom(delayBoom);
                     queue.Enqueue(stack.Pop());
 
                     if (isPlaySound)
@@ -535,7 +539,7 @@ namespace Minesweeper
                         g.DrawImage(stagesBoom[mine.StageBoom], mine.Rectangle);
 
                 while (queue.Count > 0 && queue.Peek().StageBoom >= Mine.CountStagesBoom)
-                    g.DrawImage(openCell, queue.Dequeue().Rectangle);
+                    g.DrawImage(emptyImage, queue.Dequeue().Rectangle);
 
                 Image = imgMap;
 
@@ -586,11 +590,7 @@ namespace Minesweeper
         public void ChangeDesign()
         {
             SetDesign();
-
-            foreach (var cell in cells.Values)
-                if (cell.IsClose)
-                    g.DrawImage(imgCells[cell.Mark], cell.Rectangle);
-
+            cells.Values.Where(c => c.IsClose).ToList().ForEach(c => g.DrawImage(imgCells[c.Mark], c.Rectangle));
             Image = imgMap;
         }
 
@@ -599,16 +599,12 @@ namespace Minesweeper
         public void OpenSavedGame(JObject jObj)
         {
             Level = (Level)jObj["Level"].Value<int>();
-
             SizeInCells = new Size(jObj["Width"].Value<int>(), jObj["Height"].Value<int>());
-            cells = new Dictionary<(int, int), Cell>();
-
-            countOpenCells = 0;
 
             JArray jArr = JArray.Parse(JToken.FromObject(jObj.SelectToken("DataCells")).ToString());
 
-            int x, y;
             Cell cell;
+            int x, y;
 
             foreach (JObject jCell in jArr)
             {
@@ -623,15 +619,13 @@ namespace Minesweeper
                 if (!cell.IsClose && cell is Mine)
                     throw new Exception();
 
-                if (!cell.IsClose)
-                    countOpenCells++;
-
                 cell.CellOpen += CellOpen;
 
                 cells.Add((x, y), cell);
             }
 
-            mines = cells.Values.Select(c => c as Mine).Where(c => c is Mine).ToArray();
+            countOpenCells = cells.Values.Where(c => !c.IsClose).Count();
+            mines = cells.Values.Where(c => c is Mine).Select(c => c as Mine).ToArray();
 
             SetNumbers();
             Start(true, true);
