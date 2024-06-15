@@ -1,5 +1,6 @@
 ﻿using Minesweeper.Properties;
 using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Minesweeper
@@ -11,13 +12,15 @@ namespace Minesweeper
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += new ThreadExceptionEventHandler(ShowMessage);
 
-            FormMain form = new FormMain
-            {
-                WindowState = Settings.Default.IsMaximized ? FormWindowState.Maximized : FormWindowState.Normal
-            };
+            var form = new FormMain();
+            form.WindowState = Settings.Default.IsMaximized ? FormWindowState.Maximized : FormWindowState.Normal;
 
             Application.Run(form);
         }
+
+        private static void ShowMessage(object sender, ThreadExceptionEventArgs e) =>
+            MessageBox.Show(e.Exception.ToString());
     }
 }

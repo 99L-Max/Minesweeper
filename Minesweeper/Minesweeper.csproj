@@ -79,100 +79,106 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cell.cs" />
-    <Compile Include="Design.cs">
+    <Compile Include="DataObjects\LevelData.cs" />
+    <Compile Include="DataObjects\SettingsData.cs" />
+    <Compile Include="Objects\Cell.cs" />
+    <Compile Include="Forms\FormDesign.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Design.Designer.cs">
-      <DependentUpon>Design.cs</DependentUpon>
+    <Compile Include="Forms\FormDesign.Designer.cs">
+      <DependentUpon>FormDesign.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDialogGameOver.cs">
+    <Compile Include="Forms\FormDialogGameOver.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDialogGameOver.Designer.cs">
+    <Compile Include="Forms\FormDialogGameOver.Designer.cs">
       <DependentUpon>FormDialogGameOver.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDialogNewGame.cs">
+    <Compile Include="Forms\FormDialogNewGame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDialogNewGame.Designer.cs">
+    <Compile Include="Forms\FormDialogNewGame.Designer.cs">
       <DependentUpon>FormDialogNewGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain.cs">
+    <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Map.cs">
+    <Compile Include="Objects\ExplodingMine.cs" />
+    <Compile Include="Objects\Map.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Mine.cs" />
-    <Compile Include="Parameters.cs">
+    <Compile Include="Objects\Mine.cs" />
+    <Compile Include="Forms\FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Parameters.Designer.cs">
-      <DependentUpon>Parameters.cs</DependentUpon>
+    <Compile Include="Forms\FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Objects\Scanner.cs" />
+    <Compile Include="Processing\Painter.cs" />
+    <Compile Include="Processing\JsonManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reference.cs">
+    <Compile Include="Forms\FormReference.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reference.Designer.cs">
-      <DependentUpon>Reference.cs</DependentUpon>
+    <Compile Include="Forms\FormReference.Designer.cs">
+      <DependentUpon>FormReference.cs</DependentUpon>
     </Compile>
-    <Compile Include="Focus.cs">
+    <Compile Include="Objects\FocusCell.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Scanner.cs" />
-    <Compile Include="Sound.cs" />
-    <Compile Include="Statistics.cs">
+    <Compile Include="Processing\Sound.cs" />
+    <Compile Include="Forms\FormStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Statistics.Designer.cs">
-      <DependentUpon>Statistics.cs</DependentUpon>
+    <Compile Include="Forms\FormStatistics.Designer.cs">
+      <DependentUpon>FormStatistics.cs</DependentUpon>
     </Compile>
-    <Compile Include="StatsData.cs" />
-    <Compile Include="VisualCounter.cs">
+    <Compile Include="DataObjects\StatisticalData.cs" />
+    <Compile Include="Objects\VisualCounter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="Design.resx">
-      <DependentUpon>Design.cs</DependentUpon>
+    <Compile Include="Objects\ShowingMine.cs" />
+    <EmbeddedResource Include="Forms\FormDesign.resx">
+      <DependentUpon>FormDesign.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDialogGameOver.resx">
+    <EmbeddedResource Include="Forms\FormDialogGameOver.resx">
       <DependentUpon>FormDialogGameOver.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDialogNewGame.resx">
+    <EmbeddedResource Include="Forms\FormDialogNewGame.resx">
       <DependentUpon>FormDialogNewGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Parameters.resx">
-      <DependentUpon>Parameters.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="Reference.resx">
-      <DependentUpon>Reference.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormReference.resx">
+      <DependentUpon>FormReference.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Statistics.resx">
-      <DependentUpon>Statistics.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormStatistics.resx">
+      <DependentUpon>FormStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -183,82 +189,102 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Flag.png" />
+    <None Include="Resources\Json\Level_Titles.json" />
+    <None Include="Resources\Json\Settings_Default.json" />
+    <None Include="Resources\Textures\Flag.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\OpenCell.png" />
+    <None Include="Resources\Textures\OpenCell.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Watch.png" />
+    <None Include="Resources\Textures\Watch.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Boom_Stage0.png" />
+    <None Include="Resources\Textures\Counter_Blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Boom_Stage1.png" />
+    <None Include="Resources\Textures\Counter_Purple.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Boom_Stage2.png" />
+    <None Include="Resources\Textures\Cross.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Counter_Blue.png" />
+    <None Include="Resources\Textures\Cell_Blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Counter_Purple.png" />
+    <None Include="Resources\Textures\Cell_Purple.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cross.png" />
+    <None Include="Resources\Textures\Reference.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cell_Blue.png" />
+    <None Include="Resources\Texts\About.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cell_Purple.png" />
+    <None Include="Resources\Textures\Mine_Activated.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Reference.png" />
+    <None Include="Resources\Textures\Mine_Exploded.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\About.txt" />
+    <None Include="Resources\Textures\Mine.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Mine_Activated.png" />
+    <None Include="Resources\Sounds\Start.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Mine_Exploded.png" />
+    <None Include="Resources\Sounds\Win.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Mine.png" />
+    <None Include="Resources\Sounds\Boom.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Start.wav" />
+    <None Include="Resources\Sounds\Error.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Win.wav" />
+    <None Include="Resources\Sounds\Open.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Boom.wav" />
+    <None Include="Resources\Sounds\Sound.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Error.wav" />
+    <None Include="Resources\Textures\Counter_Green.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Open.wav" />
+    <None Include="Resources\Textures\Cell_Green.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Sound.wav" />
+    <None Include="Resources\Textures\QuestionMark.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Counter_Green.png" />
+    <None Include="Resources\Textures\NotMine.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cell_Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\QuestionMark.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NotMine.png" />
+    <Content Include="Resources\Textures\Boom_Stage00.gif" />
+    <Content Include="Resources\Textures\Boom_Stage01.gif" />
+    <Content Include="Resources\Textures\Boom_Stage02.gif" />
+    <Content Include="Resources\Textures\Boom_Stage03.gif" />
+    <Content Include="Resources\Textures\Boom_Stage04.gif" />
+    <Content Include="Resources\Textures\Boom_Stage05.gif" />
+    <Content Include="Resources\Textures\Boom_Stage06.gif" />
+    <Content Include="Resources\Textures\Boom_Stage07.gif" />
+    <Content Include="Resources\Textures\Boom_Stage08.gif" />
+    <Content Include="Resources\Textures\Boom_Stage09.gif" />
+    <Content Include="Resources\Textures\Boom_Stage10.gif" />
+    <Content Include="Resources\Textures\Boom_Stage11.gif" />
+    <Content Include="Resources\Textures\Boom_Stage12.gif" />
+    <Content Include="Resources\Textures\Boom_Stage13.gif" />
+    <Content Include="Resources\Textures\Boom_Stage14.gif" />
+    <Content Include="Resources\Textures\Boom_Stage15.gif" />
+    <Content Include="Resources\Textures\Boom_Stage16.gif" />
+    <Content Include="Resources\Textures\Boom_Stage17.gif" />
+    <Content Include="Resources\Textures\Boom_Stage18.gif" />
+    <Content Include="Resources\Textures\Boom_Stage19.gif" />
+    <Content Include="Resources\Textures\Boom_Stage20.gif" />
+    <Content Include="Resources\Textures\Boom_Stage21.gif" />
+    <Content Include="Resources\Textures\Boom_Stage22.gif" />
+    <Content Include="Resources\Textures\Boom_Stage23.gif" />
+    <Content Include="Resources\Textures\Smile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

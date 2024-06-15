@@ -12,7 +12,7 @@ namespace Minesweeper.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -32,102 +32,6 @@ namespace Minesweeper.Properties {
             }
             set {
                 this["Level"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsShowAnimation {
-            get {
-                return ((bool)(this["IsShowAnimation"]));
-            }
-            set {
-                this["IsShowAnimation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsPlaySounds {
-            get {
-                return ((bool)(this["IsPlaySounds"]));
-            }
-            set {
-                this["IsPlaySounds"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsContinueSavedGame {
-            get {
-                return ((bool)(this["IsContinueSavedGame"]));
-            }
-            set {
-                this["IsContinueSavedGame"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsSaveGameExiting {
-            get {
-                return ((bool)(this["IsSaveGameExiting"]));
-            }
-            set {
-                this["IsSaveGameExiting"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsShowQuestionMarks {
-            get {
-                return ((bool)(this["IsShowQuestionMarks"]));
-            }
-            set {
-                this["IsShowQuestionMarks"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9")]
-        public int SpecialWidth {
-            get {
-                return ((int)(this["SpecialWidth"]));
-            }
-            set {
-                this["SpecialWidth"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9")]
-        public int SpecialHeight {
-            get {
-                return ((int)(this["SpecialHeight"]));
-            }
-            set {
-                this["SpecialHeight"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int SpecialCountMines {
-            get {
-                return ((int)(this["SpecialCountMines"]));
-            }
-            set {
-                this["SpecialCountMines"] = value;
             }
         }
         
@@ -188,6 +92,42 @@ namespace Minesweeper.Properties {
             }
             set {
                 this["Height"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public int SpecialWidthMap {
+            get {
+                return ((int)(this["SpecialWidthMap"]));
+            }
+            set {
+                this["SpecialWidthMap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public int SpecialHeightMap {
+            get {
+                return ((int)(this["SpecialHeightMap"]));
+            }
+            set {
+                this["SpecialHeightMap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int SpecialCountMines {
+            get {
+                return ((int)(this["SpecialCountMines"]));
+            }
+            set {
+                this["SpecialCountMines"] = value;
             }
         }
     }
