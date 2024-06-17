@@ -415,10 +415,10 @@ namespace Minesweeper
 
             var rnd = new Random();
             var stack = new Stack<Cell>(_cells.Values.OrderBy(c => rnd.Next()));
+            var i = 0;
+            var iMax = _cells.Count / 8;
 
             Sound.Play(Resources.Start);
-
-            int i = 0, iMax = _cells.Count / 8;
 
             do
             {
@@ -495,18 +495,23 @@ namespace Minesweeper
 
             stagesBoom.Insert(0, new Bitmap(_imgMine));
 
+            var delayFramesSound = 5;
+            var counterFrames = 0;
+            var countExplodedMines = 0;
+            var differenceExplodedMines = 0;
+
             foreach (var mine in _mines)
             {
                 dx = sender.X - mine.X;
                 dy = sender.Y - mine.Y;
                 distance = (int)Math.Sqrt(dx * dx + dy * dy);
 
-                explodingMines.Add(new ExplodingMine(_sizeCell, mine.X, mine.Y, (4 * distance + rnd.Next(4)) * DeltaTime, stagesBoom.Count));
+                explodingMines.Add(new ExplodingMine(_sizeCell, mine.X, mine.Y, (4 * distance + rnd.Next(delayFramesSound)) * DeltaTime, stagesBoom.Count));
                 _g.DrawImage(_imgMine, mine.ImageRectangle);
             }
 
             Image = _image;
-            
+
             do
             {
                 foreach (var mine in explodingMines)
@@ -516,6 +521,21 @@ namespace Minesweeper
                 }
 
                 Image = _image;
+
+                if (++counterFrames >= delayFramesSound)
+                {
+                    counterFrames = 0;
+                    differenceExplodedMines = explodingMines.Where(m => m.Delay == 0).Count() - countExplodedMines;
+                    countExplodedMines += differenceExplodedMines;
+
+                    if (differenceExplodedMines > 0)
+                        switch (++differenceExplodedMines >> 1)
+                        {
+                            case 1: Sound.Play(Resources.Boom1); break;
+                            case 2: Sound.Play(Resources.Boom2); break;
+                            default: Sound.Play(Resources.Boom3); break;
+                        }
+                }
 
                 await Task.Delay(DeltaTime);
 

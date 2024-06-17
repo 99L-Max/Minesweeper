@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Registry.4.7.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
@@ -236,9 +239,6 @@
     <None Include="Resources\Sounds\Win.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Sounds\Boom.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Sounds\Error.wav" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +260,11 @@
     <None Include="Resources\Textures\NotMine.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icon.ico" />
+    <Content Include="Resources\Icon.ico" />
+    <Content Include="Resources\Sounds\Boom1.wav" />
+    <Content Include="Resources\Sounds\Boom2.wav" />
+    <Content Include="Resources\Sounds\Boom3.wav" />
     <Content Include="Resources\Textures\Boom_Stage00.gif" />
     <Content Include="Resources\Textures\Boom_Stage01.gif" />
     <Content Include="Resources\Textures\Boom_Stage02.gif" />

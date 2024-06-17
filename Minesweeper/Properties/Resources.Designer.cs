@@ -68,23 +68,14 @@ namespace Minesweeper.Properties {
         ///компанией &quot;Мурлыкающие приматы&quot;. Не все права
         ///защищены. Код общедоступен.
         ///
-        ///Благодарим Вас за выбор нашей игры - у Вас
-        ///отличный вкус. Пожалуйста, расскажите о нас
+        ///Благодарим Вас за выбор нашей игры. У Вас
+        ///отличный вкус! Пожалуйста, расскажите о нас
         ///друзьям и не только своим.
         ///И помните: котики правят миром..
         /// </summary>
         internal static string About {
             get {
                 return ResourceManager.GetString("About", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Boom {
-            get {
-                return ResourceManager.GetStream("Boom", resourceCulture);
             }
         }
         
@@ -329,6 +320,33 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Boom1 {
+            get {
+                return ResourceManager.GetStream("Boom1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Boom2 {
+            get {
+                return ResourceManager.GetStream("Boom2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Boom3 {
+            get {
+                return ResourceManager.GetStream("Boom3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Cell_Blue {
@@ -414,6 +432,16 @@ namespace Minesweeper.Properties {
             get {
                 object obj = ResourceManager.GetObject("Flag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon Icon {
+            get {
+                object obj = ResourceManager.GetObject("Icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

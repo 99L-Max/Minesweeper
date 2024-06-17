@@ -8,8 +8,6 @@ namespace Minesweeper
     {
         private readonly int _maxStageBoom;
 
-        private bool _isSoundPlayed = false;
-
         public int Delay { get; private set; }
         public int StageBoom { get; private set; } = 0;
         public bool IsExploded { get; private set; } = false;
@@ -38,12 +36,6 @@ namespace Minesweeper
             }
             else if (!IsExploded)
             {
-                if (!_isSoundPlayed)
-                {
-                    //Sound.Play(Resources.Boom);
-                    _isSoundPlayed = true;
-                }
-
                 IsExploded = ++StageBoom == _maxStageBoom;
             }
         }
