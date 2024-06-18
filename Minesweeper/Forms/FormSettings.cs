@@ -45,13 +45,6 @@ namespace Minesweeper
             _numSpecialWidth.Maximum = SettingsData.MaxWidthMap;
             _numSpecialHeight.Maximum = SettingsData.MaxHeightMap;
 
-            _numSpecialWidth.Minimum = SettingsData.MinWidthMap;
-            _numSpecialHeight.Minimum = SettingsData.MinHeightMap;
-            _numSpecialCountMines.Minimum = SettingsData.MinCountMines;
-
-            _numSpecialWidth.Maximum = SettingsData.MaxWidthMap;
-            _numSpecialHeight.Maximum = SettingsData.MaxHeightMap;
-
             _numSpecialWidth.Value = _settingsData.SpecialWidthMap;
             _numSpecialHeight.Value = _settingsData.SpecialHeightMap;
             _numSpecialCountMines.Value = _settingsData.SpecialCountMines;
