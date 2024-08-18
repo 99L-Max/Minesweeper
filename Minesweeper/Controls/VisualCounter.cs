@@ -54,13 +54,12 @@ namespace Minesweeper
         {
             if (Theme != theme)
             {
-                var backgroundImage = new Bitmap((Image)Resources.ResourceManager.GetObject($"Counter_{theme}"), _image.Width, _image.Height);
+                var backgroundImage = Painter.CutSprite(Resources.Counter, 3, 1, (int)theme, 0);
+                var siteIcon = backgroundImage.Height;
+                var xIcon = IconPosition == IconPosition.Left ? 0 : backgroundImage.Width - siteIcon;
 
                 using (var g = Graphics.FromImage(backgroundImage))
                 {
-                    var siteIcon = backgroundImage.Height;
-                    var xIcon = IconPosition == IconPosition.Left ? 0 : backgroundImage.Width - siteIcon;
-
                     g.FillEllipse(Brushes.White, xIcon, 0, siteIcon, siteIcon);
                     g.DrawImage(_icon, xIcon, 0, siteIcon, siteIcon);
                 }

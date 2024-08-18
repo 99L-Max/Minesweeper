@@ -53,7 +53,7 @@ namespace Minesweeper
             _statisticalData = new StatisticalData(PathLocalAppData);
             _settingsData = new SettingsData(PathLocalAppData);
             _watch = new VisualCounter(Resources.Watch, IconPosition.Left, _settingsData.Theme);
-            _flags = new VisualCounter(Resources.Mine, IconPosition.Right, _settingsData.Theme);
+            _flags = new VisualCounter(Painter.CutSprite(Resources.Mine, 1, 3, 0, 0), IconPosition.Right, _settingsData.Theme);
             _map = new Map(_settingsData, (Theme)Settings.Default.Theme);
 
             _tableMap.Controls.Add(_map);

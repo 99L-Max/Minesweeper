@@ -24,8 +24,12 @@ namespace Minesweeper
             _flag = new Bitmap(Resources.Flag);
             _themes = new PictureBox[] { _pb0, _pb1, _pb2 };
 
-            for (int i = 0; i < _themes.Length; i++)
-                _themes[i].Tag = i;
+            using (var sprite = Resources.Cell)
+                for (int i = 0; i < _themes.Length; i++)
+                {
+                    _themes[i].Tag = i;
+                    _themes[i].BackgroundImage = Painter.CutSprite(sprite, 3, 1, i, 0, null, false);
+                }
 
             _indexTheme = (int)_selectedTheme;
             _themes[_indexTheme].Image = _flag;

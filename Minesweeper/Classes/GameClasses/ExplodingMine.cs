@@ -1,6 +1,4 @@
-﻿using Minesweeper.Properties;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Minesweeper
 {
@@ -16,16 +14,6 @@ namespace Minesweeper
         {
             Delay = delay;
             _maxStageBoom = maxStageBoom;
-        }
-
-        public static List<Image> GetStagesBoom(Size imgSize)
-        {
-            var stagesBoom = new List<Image>();
-
-            for (int i = 0; i < 24; i++)
-                stagesBoom.Add(new Bitmap((Image)Resources.ResourceManager.GetObject($"Boom_Stage{i:d2}"), imgSize));
-
-            return stagesBoom;
         }
 
         public void Update(int deltaTime)

@@ -72,7 +72,6 @@ namespace Minesweeper
             // 
             // _pb0
             // 
-            this._pb0.BackgroundImage = global::Minesweeper.Properties.Resources.Cell_Blue;
             this._pb0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this._pb0.Location = new System.Drawing.Point(12, 12);
             this._pb0.Name = "_pb0";
@@ -85,7 +84,6 @@ namespace Minesweeper
             // 
             // _pb1
             // 
-            this._pb1.BackgroundImage = global::Minesweeper.Properties.Resources.Cell_Green;
             this._pb1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this._pb1.Location = new System.Drawing.Point(118, 12);
             this._pb1.Name = "_pb1";
@@ -98,7 +96,6 @@ namespace Minesweeper
             // 
             // _pb2
             // 
-            this._pb2.BackgroundImage = global::Minesweeper.Properties.Resources.Cell_Purple;
             this._pb2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this._pb2.Location = new System.Drawing.Point(225, 12);
             this._pb2.Name = "_pb2";

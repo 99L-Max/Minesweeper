@@ -142,7 +142,7 @@ namespace Minesweeper
 
         public void Restart()
         {
-            using (var mine = Resources.Mine_Exploded)
+            using (var mine = Painter.CutSprite(Resources.Mine, 1, 3, 0, 2))
             using (var g = Graphics.FromImage(_backgroundImage))
                 foreach (var cell in _cells.Values)
                 {
@@ -168,7 +168,7 @@ namespace Minesweeper
 
             if (!isWin)
             {
-                using (var mine = new Bitmap(Resources.Mine_Activated, _sizeCell))
+                using (var mine = Painter.CutSprite(Resources.Mine, 1, 3, 0, 1, _sizeCell))
                 using (var g = Graphics.FromImage(_backgroundImage))
                 {
                     g.DrawImage(mine, sender.ImageRectangle);
@@ -219,7 +219,7 @@ namespace Minesweeper
             using (var g = Graphics.FromImage(_backgroundImage))
             using (var format = new StringFormat())
             using (var openCell = new Bitmap(Resources.OpenCell, _sizeCell))
-            using (var mine = new Bitmap(Resources.Mine_Exploded, _sizeCell))
+            using (var mine = Painter.CutSprite(Resources.Mine, 1, 3, 0, 2, _sizeCell))
             {
                 format.Alignment = StringAlignment.Center;
                 format.LineAlignment = StringAlignment.Center;
@@ -270,10 +270,11 @@ namespace Minesweeper
         private void OnCellMouseClick(object sender, MouseEventArgs e)
         {
             Cell cell = _cells[_focus.KeyCell];
+
             if (e.Button == MouseButtons.Left && cell.IsClose && cell.Mark != Mark.Flag)
             {
                 if (cell.CountMinesNearby == 0)
-                    Fill(cell);
+                    OpenEmptyCells(cell);
                 else
                     cell.Open();
             }
@@ -309,7 +310,7 @@ namespace Minesweeper
                         if (c.IsClose && c.Mark != Mark.Flag)
                         {
                             if (c.CountMinesNearby == 0)
-                                Fill(c);
+                                OpenEmptyCells(c);
                             else
                                 c.Open();
                         }
@@ -360,7 +361,7 @@ namespace Minesweeper
             }
         }
 
-        private void Fill(Cell sender)
+        private void OpenEmptyCells(Cell sender)
         {
             Sound.Play(Resources.Open);
 
@@ -488,12 +489,12 @@ namespace Minesweeper
         {
             _isFinishAnimation = false;
 
+            var stagesExplosion = Painter.CutSprite(Resources.Explosion, 4, 6, _sizeCell);
             var explodingMines = new List<ExplodingMine>();
-            var stagesBoom = ExplodingMine.GetStagesBoom(_sizeCell);
-            var rnd = new Random();
+            var random = new Random();
             int dx, dy, distance;
 
-            stagesBoom.Insert(0, new Bitmap(_imgMine));
+            stagesExplosion.Insert(0, new Bitmap(_imgMine));
 
             var delayFramesSound = 5;
             var counterFrames = 0;
@@ -506,7 +507,7 @@ namespace Minesweeper
                 dy = sender.Y - mine.Y;
                 distance = (int)Math.Sqrt(dx * dx + dy * dy);
 
-                explodingMines.Add(new ExplodingMine(_sizeCell, mine.X, mine.Y, (4 * distance + rnd.Next(delayFramesSound)) * DeltaTime, stagesBoom.Count));
+                explodingMines.Add(new ExplodingMine(_sizeCell, mine.X, mine.Y, (4 * distance + random.Next(delayFramesSound)) * DeltaTime, stagesExplosion.Count));
                 _g.DrawImage(_imgMine, mine.ImageRectangle);
             }
 
@@ -517,7 +518,7 @@ namespace Minesweeper
                 foreach (var mine in explodingMines)
                 {
                     mine.Update(DeltaTime);
-                    _g.DrawImage(mine.IsExploded ? _emptyImage : stagesBoom[mine.StageBoom], mine.ImageRectangle);
+                    _g.DrawImage(mine.IsExploded ? _emptyImage : stagesExplosion[mine.StageBoom], mine.ImageRectangle);
                 }
 
                 Image = _image;
@@ -547,32 +548,32 @@ namespace Minesweeper
             }
             while (!explodingMines.All(m => m.IsExploded));
 
-            stagesBoom.ForEach(s => s.Dispose());
+            stagesExplosion.ForEach(s => s.Dispose());
         }
 
         private void SetDesign(Theme theme)
         {
             Theme = theme;
 
-            var imgCell = new Bitmap((Image)Resources.ResourceManager.GetObject($"Cell_{Theme}"), _sizeCell);
-
             using (var flag = Resources.Flag)
             using (var mark = Resources.QuestionMark)
-            using (var mine = Resources.Mine)
+            using (var mine = Painter.CutSprite(Resources.Mine, 1, 3, 0, 0))
             {
+                var imageCell = Painter.CutSprite(Resources.Cell, 3, 1, (int)Theme, 0);
+
                 if (_imgCells != null)
                     foreach (var img in _imgCells.Values)
                         img.Dispose();
 
                 _imgCells = new Dictionary<Mark, Image>()
                 {
-                    { Mark.Empty, imgCell },
-                    { Mark.Flag, Painter.OverlayImages(imgCell, flag, _sizeCell) },
-                    { Mark.Question, Painter.OverlayImages(imgCell, mark, _sizeCell) }
+                    { Mark.Empty, imageCell },
+                    { Mark.Flag, Painter.OverlayImages(imageCell, flag, _sizeCell) },
+                    { Mark.Question, Painter.OverlayImages(imageCell, mark, _sizeCell) }
                 };
 
                 _imgMine?.Dispose();
-                _imgMine = Painter.OverlayImages(imgCell, mine, _sizeCell);
+                _imgMine = Painter.OverlayImages(imageCell, mine, _sizeCell);
             }
         }
 
@@ -594,7 +595,7 @@ namespace Minesweeper
             Level = (Level)jObj["Level"].Value<int>();
             SizeInCells = new Size(jObj["Width"].Value<int>(), jObj["Height"].Value<int>());
 
-            JArray jArr = JArray.Parse(JToken.FromObject(jObj.SelectToken("DataCells")).ToString());
+            var jArr = JArray.Parse(JToken.FromObject(jObj.SelectToken("DataCells")).ToString());
 
             Cell cell;
             int x, y;
