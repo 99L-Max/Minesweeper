@@ -1,5 +1,4 @@
-﻿using Minesweeper.Properties;
-using System;
+﻿using System;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -10,17 +9,18 @@ namespace Minesweeper
         [STAThread]
         static void Main()
         {
+            GameDirectory.CreateSaveDirectory();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.ThreadException += new ThreadExceptionEventHandler(ShowMessage);
-
-            var form = new FormMain();
-            form.WindowState = Settings.Default.IsMaximized ? FormWindowState.Maximized : FormWindowState.Normal;
-
-            Application.Run(form);
+            Application.Run(new FormMain());
         }
 
-        private static void ShowMessage(object sender, ThreadExceptionEventArgs e) =>
+        private static void ShowMessage(object sender, ThreadExceptionEventArgs e)
+        {
             MessageBox.Show(e.Exception.ToString());
+        }
     }
 }

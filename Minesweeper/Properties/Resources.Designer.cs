@@ -61,48 +61,11 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Игра: Сапёр
-        ///Версия: 1.0
-        ///Автор: 99L-Max
-        ///Программа разработана в образовательных целях
-        ///компанией &quot;Мурлыкающие приматы&quot;. Не все права
-        ///защищены. Код общедоступен.
-        ///
-        ///Благодарим Вас за выбор нашей игры. У Вас
-        ///отличный вкус! Пожалуйста, расскажите о нас
-        ///друзьям и не только своим.
-        ///И помните: котики правят миром..
-        /// </summary>
-        internal static string About {
-            get {
-                return ResourceManager.GetString("About", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Boom1 {
+        internal static System.IO.UnmanagedMemoryStream Boom {
             get {
-                return ResourceManager.GetStream("Boom1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Boom2 {
-            get {
-                return ResourceManager.GetStream("Boom2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Boom3 {
-            get {
-                return ResourceManager.GetStream("Boom3", resourceCulture);
+                return ResourceManager.GetStream("Boom", resourceCulture);
             }
         }
         
@@ -113,6 +76,16 @@ namespace Minesweeper.Properties {
             get {
                 object obj = ResourceManager.GetObject("Cell", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обнаружена сохранённая игра
+        ///Продолжить сохранённую игру?.
+        /// </summary>
+        internal static string ContinueSavedGame {
+            get {
+                return ResourceManager.GetString("ContinueSavedGame", resourceCulture);
             }
         }
         
@@ -137,6 +110,26 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DefaultSettings {
+            get {
+                object obj = ResourceManager.GetObject("DefaultSettings", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DescriptionSettings {
+            get {
+                object obj = ResourceManager.GetObject("DescriptionSettings", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Error {
@@ -156,12 +149,14 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Выход из игры
+        ///Текущая игра не закончена.
+        ///Если не сохранить игру, то будет засчитано поражение.
+        ///Сохранить игру?.
         /// </summary>
-        internal static System.Drawing.Bitmap Flag {
+        internal static string GameNotSaved {
             get {
-                object obj = ResourceManager.GetObject("Flag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("GameNotSaved", resourceCulture);
             }
         }
         
@@ -176,12 +171,42 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сапёр: сведения
+        ///Игра: Сапёр
+        ///Версия: 1.1
+        ///Автор: 99L-Max
+        ///Программа разработана в образовательных целях
+        ///компанией &quot;Мурлыкающие приматы&quot;. Не все права
+        ///защищены. Код общедоступен.
+        ///
+        ///Благодарим Вас за выбор нашей игры. У Вас
+        ///отличный вкус! Пожалуйста, расскажите о нас
+        ///друзьям и не только своим.
+        ///И помните: котики правят миром..
+        /// </summary>
+        internal static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Level_Titles {
+        internal static byte[] LevelSettings {
             get {
-                object obj = ResourceManager.GetObject("Level_Titles", resourceCulture);
+                object obj = ResourceManager.GetObject("LevelSettings", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Marks {
+            get {
+                object obj = ResourceManager.GetObject("Marks", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -191,16 +216,6 @@ namespace Minesweeper.Properties {
         internal static System.Drawing.Bitmap Mine {
             get {
                 object obj = ResourceManager.GetObject("Mine", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap NotMine {
-            get {
-                object obj = ResourceManager.GetObject("NotMine", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -227,16 +242,6 @@ namespace Minesweeper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap QuestionMark {
-            get {
-                object obj = ResourceManager.GetObject("QuestionMark", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Reference {
             get {
                 object obj = ResourceManager.GetObject("Reference", resourceCulture);
@@ -245,12 +250,25 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized string similar to Сброс статистики
+        ///Обнулить всю статистику?.
         /// </summary>
-        internal static byte[] Settings_Default {
+        internal static string ResettingStatistics {
             get {
-                object obj = ResourceManager.GetObject("Settings_Default", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("ResettingStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изменение настроек игры
+        ///Эти параметры нельзя применить к текущей игре.
+        ///Новые параметры будут применены к следующей игре.
+        ///Завершение игры сейчас будет засчитано как поражение.
+        ///Завершить текущую игру и начать новую?.
+        /// </summary>
+        internal static string SettingsChanged {
+            get {
+                return ResourceManager.GetString("SettingsChanged", resourceCulture);
             }
         }
         

@@ -33,7 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -82,83 +83,121 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\DataObjects\LevelData.cs" />
-    <Compile Include="Classes\DataObjects\SettingsData.cs" />
-    <Compile Include="Classes\GameClasses\Cell.cs" />
-    <Compile Include="Forms\FormDesign.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormDesign.Designer.cs">
-      <DependentUpon>FormDesign.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormDialogGameOver.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormDialogGameOver.Designer.cs">
-      <DependentUpon>FormDialogGameOver.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormDialogNewGame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormDialogNewGame.Designer.cs">
-      <DependentUpon>FormDialogNewGame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\GameClasses\ExplodingMine.cs" />
-    <Compile Include="Controls\Map.cs">
+    <Compile Include="Code\Classes\Factories\BrushesFactory.cs" />
+    <Compile Include="Code\Classes\Factories\ScannerColorsFactory.cs" />
+    <Compile Include="Code\Classes\Creators\GameRandom.cs" />
+    <Compile Include="Code\Classes\User Data\UserInterfaceData.cs" />
+    <Compile Include="Code\Classes\User Data\SettingsData.cs" />
+    <Compile Include="Code\Classes\Resource Processing\OneTimeSound.cs" />
+    <Compile Include="Code\Classes\Game Objects\MapAnimator.cs" />
+    <Compile Include="Code\Classes\Game Objects\MapCell.cs" />
+    <Compile Include="Code\Classes\Game Objects\Cell.cs" />
+    <Compile Include="Code\Classes\Game Objects\MapView.cs" />
+    <Compile Include="Code\Classes\Game Objects\MapLayerImage.cs" />
+    <Compile Include="Code\Classes\Game Objects\MineExplosion.cs" />
+    <Compile Include="Code\Classes\Game Objects\Mine.cs" />
+    <Compile Include="Code\Classes\Creators\CellsHandler.cs" />
+    <Compile Include="Code\Classes\Factories\ControlsFactory.cs" />
+    <Compile Include="Code\Classes\Factories\EnumFactory.cs" />
+    <Compile Include="Code\Classes\User Files\FileWriter.cs" />
+    <Compile Include="Code\Classes\User Files\GameDirectory.cs" />
+    <Compile Include="Code\Classes\Resource Processing\ResourceImage.cs" />
+    <Compile Include="Code\Classes\Creators\MessageShower.cs" />
+    <Compile Include="Code\Classes\Creators\Resizer.cs" />
+    <Compile Include="Controls\Special\ButtonTheme.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Classes\GameClasses\Mine.cs" />
-    <Compile Include="Forms\FormSettings.cs">
+    <Compile Include="Controls\Special\CheckBoxSettings.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Special\RadioButtonLevel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Special\VisualCounter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Code\Enums\CellMark.cs" />
+    <Compile Include="Code\Enums\DialogDecision.cs" />
+    <Compile Include="Code\Enums\GameSettings.cs" />
+    <Compile Include="Code\Enums\Level.cs" />
+    <Compile Include="Code\Enums\MapLayers.cs" />
+    <Compile Include="Code\Enums\MineState.cs" />
+    <Compile Include="Code\Enums\Theme.cs" />
+    <Compile Include="Controls\Forms\FormDesign.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSettings.Designer.cs">
+    <Compile Include="Controls\Forms\FormDesign.Designer.cs">
+      <DependentUpon>FormDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Forms\FormDialogGameOver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Forms\FormDialogGameOver.Designer.cs">
+      <DependentUpon>FormDialogGameOver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Forms\FormDialogNewGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Forms\FormDialogNewGame.Designer.cs">
+      <DependentUpon>FormDialogNewGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Forms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Forms\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Special\Map.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Forms\FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Forms\FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\GameClasses\Scanner.cs" />
-    <Compile Include="Classes\Processing\Painter.cs" />
-    <Compile Include="Classes\Processing\JsonManager.cs" />
+    <Compile Include="Code\Classes\Game Objects\Scanner.cs" />
+    <Compile Include="Code\Classes\Creators\Painter.cs" />
+    <Compile Include="Code\Classes\User Files\FileReader.cs" />
+    <Compile Include="Code\Interfaces\ISetTheme.cs" />
+    <Compile Include="Code\Interfaces\ISave.cs" />
+    <Compile Include="Code\Interfaces\ISetSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\FormReference.cs">
+    <Compile Include="Controls\Forms\FormReference.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormReference.Designer.cs">
+    <Compile Include="Controls\Forms\FormReference.Designer.cs">
       <DependentUpon>FormReference.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FocusCell.cs">
+    <Compile Include="Controls\Special\FocusCell.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Classes\Processing\Sound.cs" />
-    <Compile Include="Forms\FormStatistics.cs">
+    <Compile Include="Code\Classes\Resource Processing\SoundPlayer.cs" />
+    <Compile Include="Controls\Forms\FormStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormStatistics.Designer.cs">
+    <Compile Include="Controls\Forms\FormStatistics.Designer.cs">
       <DependentUpon>FormStatistics.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\DataObjects\StatisticalData.cs" />
-    <Compile Include="Controls\VisualCounter.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Classes\GameClasses\ShowingMine.cs" />
-    <EmbeddedResource Include="Forms\FormDesign.resx">
+    <Compile Include="Code\Classes\User Data\StatisticsData.cs" />
+    <Compile Include="Code\Classes\Game Objects\MineAlpha.cs" />
+    <Compile Include="Code\Classes\User Data\LevelStatistics.cs" />
+    <Compile Include="Code\Structs\GameSettingsData.cs" />
+    <Compile Include="Code\Structs\LevelSettings.cs" />
+    <EmbeddedResource Include="Controls\Forms\FormDesign.resx">
       <DependentUpon>FormDesign.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormDialogGameOver.resx">
+    <EmbeddedResource Include="Controls\Forms\FormDialogGameOver.resx">
       <DependentUpon>FormDialogGameOver.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormDialogNewGame.resx">
+    <EmbeddedResource Include="Controls\Forms\FormDialogNewGame.resx">
       <DependentUpon>FormDialogNewGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormMain.resx">
+    <EmbeddedResource Include="Controls\Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSettings.resx">
+    <EmbeddedResource Include="Controls\Forms\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -166,10 +205,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormReference.resx">
+    <EmbeddedResource Include="Controls\Forms\FormReference.resx">
       <DependentUpon>FormReference.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormStatistics.resx">
+    <EmbeddedResource Include="Controls\Forms\FormStatistics.resx">
       <DependentUpon>FormStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -192,11 +231,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Json\Level_Titles.json" />
-    <None Include="Resources\Json\Settings_Default.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Texts\About.txt" />
+    <None Include="Resources\Dictionaries\DefaultSettings.json" />
+    <None Include="Resources\Dictionaries\DescriptionSettings.json" />
+    <None Include="Resources\Dictionaries\LevelSettings.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Sounds\Start.wav" />
@@ -214,23 +251,24 @@
     <None Include="Resources\Sounds\Sound.wav" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icon.ico" />
     <Content Include="Resources\Icon.ico" />
-    <Content Include="Resources\Sounds\Boom1.wav" />
-    <Content Include="Resources\Sounds\Boom2.wav" />
-    <Content Include="Resources\Sounds\Boom3.wav" />
+    <Content Include="Resources\Sounds\Boom.wav" />
+    <Content Include="Resources\Texts\ContinueSavedGame.txt" />
+    <Content Include="Resources\Texts\GameNotSaved.txt" />
+    <Content Include="Resources\Texts\Information.txt" />
+    <Content Include="Resources\Texts\ResettingStatistics.txt" />
+    <Content Include="Resources\Texts\SettingsChanged.txt" />
     <Content Include="Resources\Textures\Cell.png" />
     <Content Include="Resources\Textures\Counter.png" />
     <Content Include="Resources\Textures\Cross.png" />
     <Content Include="Resources\Textures\Explosion.png" />
-    <Content Include="Resources\Textures\Flag.png" />
+    <Content Include="Resources\Textures\Marks.png" />
     <Content Include="Resources\Textures\Mine.png" />
-    <Content Include="Resources\Textures\NotMine.png" />
     <Content Include="Resources\Textures\OpenCell.png" />
-    <Content Include="Resources\Textures\QuestionMark.png" />
     <Content Include="Resources\Textures\Reference.png" />
     <Content Include="Resources\Textures\Smile.png" />
     <Content Include="Resources\Textures\Watch.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
