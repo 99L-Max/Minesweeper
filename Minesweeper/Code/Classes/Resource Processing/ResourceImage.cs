@@ -48,7 +48,7 @@ namespace Minesweeper
             return result;
         }
 
-        public static Dictionary<T, Image> CutImagesByEnum<T>(Image sprite, bool isDisposeSprite = true)
+        public static Dictionary<T, Image> CutImagesByEnum<T>(Image sprite, bool isDisposeSprite = true) where T : Enum
         {
             var keys = EnumFactory.GetValues<T>();
             var images = CutColumnIntoFrames(sprite, keys.Length, isDisposeSprite);
@@ -60,7 +60,7 @@ namespace Minesweeper
             return dictionary;
         }
 
-        public static Image CutImageByEnum<T>(Image sprite, T value, byte alpha = byte.MaxValue, bool isDisposeSprite = true)
+        public static Image CutImageByEnum<T>(Image sprite, T value, byte alpha = byte.MaxValue, bool isDisposeSprite = true) where T : Enum
         {
             return CutImageFromColumn(sprite, EnumFactory.GetCount<T>(), Convert.ToInt32(value), alpha, isDisposeSprite);
         }

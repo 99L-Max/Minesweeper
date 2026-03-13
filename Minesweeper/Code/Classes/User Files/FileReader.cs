@@ -16,47 +16,17 @@ namespace Minesweeper
 
         public static SettingsData GetSettingsOrDefault()
         {
-            try
-            {
-                var path = GameDirectory.SettingsFilePath;
-                var json = File.ReadAllText(path);
-
-                return JsonConvert.DeserializeObject<SettingsData>(json);
-            }
-            catch (Exception)
-            {
-                return new SettingsData();
-            }
+            return GetObjectFromFile<SettingsData>(GameDirectory.SettingsFilePath);
         }
 
         public static StatisticsData GetStatisticsOrDefault()
         {
-            try
-            {
-                var path = GameDirectory.StatisticsFilePath;
-                var json = File.ReadAllText(path);
-
-                return JsonConvert.DeserializeObject<StatisticsData>(json);
-            }
-            catch (Exception)
-            {
-                return new StatisticsData();
-            }
+            return GetObjectFromFile<StatisticsData>(GameDirectory.StatisticsFilePath);
         }
 
         public static UserInterfaceData GetUserInterfaceDataOrDefault()
         {
-            try
-            {
-                var path = GameDirectory.UserInterfaceDataFilePath;
-                var json = File.ReadAllText(path);
-
-                return JsonConvert.DeserializeObject<UserInterfaceData>(json);
-            }
-            catch (Exception)
-            {
-                return new UserInterfaceData();
-            }
+            return GetObjectFromFile<UserInterfaceData>(GameDirectory.UserInterfaceDataFilePath);
         }
 
         public static bool TryOpenSaveFile(out MapCell[] cells, out int gameTimeInSeconds)
@@ -65,7 +35,7 @@ namespace Minesweeper
             {
                 var jsonMap = File.ReadAllText(GameDirectory.MapFilePath);
                 var jsonSeconds = File.ReadAllText(GameDirectory.GameTimeInSecondsFilePath);
-                
+
                 cells = JsonConvert.DeserializeObject<MapCell[]>(jsonMap);
                 gameTimeInSeconds = JsonConvert.DeserializeObject<int>(jsonSeconds);
                 return true;
@@ -75,6 +45,19 @@ namespace Minesweeper
                 cells = null;
                 gameTimeInSeconds = default;
                 return false;
+            }
+        }
+
+        private static T GetObjectFromFile<T>(string path) where T : new()
+        {
+            try
+            {
+                var json = File.ReadAllText(path);
+                return JsonConvert.DeserializeObject<T>(json);
+            }
+            catch (Exception)
+            {
+                return new T();
             }
         }
     }
